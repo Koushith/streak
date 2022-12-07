@@ -1,5 +1,10 @@
 import { View } from "react-native";
+import { Text } from "react-native-paper";
 
 export const DashBoardScreen = () => {
-  return <View>Dashboard Screen</View>;
+  return (
+    <View>
+      <Text>Dashboard</Text>
+    </View>
+  );
 };
