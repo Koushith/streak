@@ -9,6 +9,10 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@expo-google-fonts/barlow": "^0.2.2",
+    "@expo-google-fonts/ibm-plex-mono": "^0.2.2",
+    "@expo-google-fonts/ibm-plex-sans": "^0.2.2",
+    "@expo-google-fonts/rubik": "^0.2.2",
     "@expo/webpack-config": "^0.17.2",
     "@react-navigation/native": "^6.1.0",
     "@react-navigation/native-stack": "^6.9.5",
