@@ -23,6 +23,9 @@ import {
 } from "@expo-google-fonts/barlow";
 
 import { DashBoardScreen, LoginScreen, RegisterScreen } from "./src/screens";
+import ExpoStatusBar from "expo-status-bar/build/ExpoStatusBar";
+import * as SplashScreen from "expo-splash-screen";
+import { useCallback, useEffect } from "react";
 
 const Stack = createNativeStackNavigator();
 
@@ -42,23 +45,41 @@ export default function App() {
   });
 
   const [rubikLoaded] = useRubik({
-    IBMPlexSans_700Bold,
-    IBMPlexSans_500Medium,
+    Rubik_500Medium,
+    Rubik_600SemiBold,
   });
 
-  if (!rubikLoaded || !ibmPlexMonoLoaded || !ibmSansLoaded || !barlowLoaded) {
-    console.log("herererere");
-    return null;
-  }
+  // const onLayoutRootView = useCallback(async () => {
+  //   if (rubikLoaded || ibmPlexMonoLoaded || ibmSansLoaded || barlowLoaded) {
+  //     console.log("all fonts loaded");
+  //     await SplashScreen.hideAsync();
+  //   }
+  // }, [rubikLoaded, ibmPlexMonoLoaded, ibmSansLoaded, barlowLoaded]);
+
+  const fontsLoaded = () => {
+    if (!rubikLoaded || !ibmPlexMonoLoaded || !ibmSansLoaded || !barlowLoaded) {
+      console.log("herererere");
+      return null;
+    }
+  };
+
+  useEffect(() => {
+    fontsLoaded();
+    console.log("ran on mount");
+    console.log(rubikLoaded, ibmPlexMonoLoaded, ibmSansLoaded, barlowLoaded);
+  }, [rubikLoaded, ibmPlexMonoLoaded, ibmSansLoaded, barlowLoaded]);
 
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Login" component={LoginScreen} />
-        <Stack.Screen name="Register" component={RegisterScreen} />
-        <Stack.Screen name="Dashboard" component={DashBoardScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <View>
+      <NavigationContainer>
+        <Stack.Navigator screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="Login" component={LoginScreen} />
+          <Stack.Screen name="Register" component={RegisterScreen} />
+          <Stack.Screen name="Dashboard" component={DashBoardScreen} />
+        </Stack.Navigator>
+        <ExpoStatusBar style="dark" />
+      </NavigationContainer>
+    </View>
   );
 }
 

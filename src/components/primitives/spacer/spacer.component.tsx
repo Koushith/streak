@@ -1,3 +1,5 @@
+import { Text, View } from "react-native";
+
 const sizeVariant = {
   small: 1,
   medium: 2,
@@ -11,4 +13,10 @@ const positionVariant = {
   bottom: "marginBottom",
 };
 
-const getVariant = (position, size) => {};
+export const Spacer = () => {
+  return (
+    <View>
+      <Text>Spacer</Text>
+    </View>
+  );
+};
